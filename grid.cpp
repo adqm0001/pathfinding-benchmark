@@ -15,8 +15,10 @@ void Grid::loadFromFile(const std::string &path) {
     return;
   }
   std::string line;
+  int rows = 0;
   while (std::getline(file, line)) {
     std::vector<CellType> row;
+    int cols = 0;
     for (size_t i = 0; i < line.length(); i++){
       char currentChar = line[i];
       if (currentChar == ' '){
@@ -32,9 +34,13 @@ void Grid::loadFromFile(const std::string &path) {
           break;
         case 'S':
           currentCell = CellType::Start;
+          start.x = rows;
+          start.y = cols;
           break;
         case 'E':
           currentCell = CellType::End;
+          end.x = rows;
+          end.y = cols; 
           break;
         default:
           std::cerr << "Unknown character defaulting to empty";
@@ -42,8 +48,10 @@ void Grid::loadFromFile(const std::string &path) {
           break;
         }
       row.push_back(currentCell);
+      cols++;
     }
     cells.push_back(row);
+    rows++;
   }
   height = cells.size();
   width = cells[0].size();
