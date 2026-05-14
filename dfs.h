@@ -1,19 +1,20 @@
-#ifndef BFS_H
-#define BFS_H
+#ifndef DFS_H
+#define DFS_H
 
-#include <queue>
+#include <stack>
 #include <vector>
 #include "grid.h"
 #include "node.h"
 
-class Bfs {
+class Dfs {
   public:
-    Bfs(){};
+    Dfs(){};
     std::vector<Node> nodePool;
-    std::queue<int> open;
+    std::stack<int> open;
     std::vector<std::vector<bool>> visited;
     std::vector<std::pair<int, int>> solve(Grid &grid);
     int nodesVisited;
 };
 
 #endif
+

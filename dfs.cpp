@@ -1,8 +1,8 @@
 #include <vector>
-#include "bfs.h"
+#include "dfs.h"
 #include "grid.h"
 
-std::vector<std::pair<int, int>> Bfs::solve(Grid &grid){ 
+std::vector<std::pair<int, int>> Dfs::solve(Grid &grid){ 
   nodesVisited = 0;
   nodePool.clear();
   nodePool.reserve(grid.getWidth() * grid.getHeight());
@@ -16,7 +16,7 @@ std::vector<std::pair<int, int>> Bfs::solve(Grid &grid){
   visited = std::vector<std::vector<bool>>(grid.getHeight(), std::vector<bool>(grid.getWidth(), false));
   visited[grid.start.x][grid.start.y] = true;
   while (!open.empty()){
-    int currentIndex = open.front();
+    int currentIndex = open.top();
     open.pop();
     nodesVisited++;
     if (nodePool[currentIndex].x == grid.end.x && nodePool[currentIndex].y == grid.end.y){

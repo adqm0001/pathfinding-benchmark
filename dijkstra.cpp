@@ -1,11 +1,10 @@
 #include <queue>
 #include <vector>
-#include <cmath>
 #include "node.h"
 #include "grid.h"
-#include "astar.h"
+#include "dijkstra.h"
 
-std::vector<std::pair<int, int>> Astar::solve(Grid &grid){
+std::vector<std::pair<int, int>> Dijkstra::solve(Grid &grid){
   nodesVisited = 0;
   nodePool.clear();
   nodePool.reserve(grid.getHeight() * grid.getWidth());
@@ -67,9 +66,6 @@ std::vector<std::pair<int, int>> Astar::solve(Grid &grid){
       nodePool[neighborIndex].g_cost = gCost;
 
       bestG[nx][ny] = nodePool[neighborIndex].g_cost;
-      nodePool[neighborIndex].h_cost = sqrt(pow(nx - grid.end.x, 2) + pow(ny - grid.end.y, 2)) * 10;
-      nodePool[neighborIndex].f_cost = nodePool[neighborIndex].g_cost + nodePool[neighborIndex].h_cost;
-      
       nodePool[neighborIndex].parentIndex = currentIndex;
 
       open.push(neighborIndex);
@@ -80,4 +76,5 @@ std::vector<std::pair<int, int>> Astar::solve(Grid &grid){
   }
   return {};
 }
+
 

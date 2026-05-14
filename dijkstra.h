@@ -1,5 +1,5 @@
-#ifndef ASTAR_H
-#define ASTAR_H
+#ifndef DIJKSTRA_H 
+#define DIJKSTRA_H 
 
 #include <queue>
 #include <vector>
@@ -7,11 +7,11 @@
 #include "grid.h"
 #include "comparator.h"
 
-class Astar {
+class Dijkstra {
   public:
-    Astar() : open(CompareF(nodePool)) {} 
+    Dijkstra() : open(CompareG(nodePool)) {} 
     std::vector<Node> nodePool;
-    std::priority_queue<int, std::vector<int>, CompareF> open;
+    std::priority_queue<int, std::vector<int>, CompareG> open;
     std::vector<std::vector<bool>> visited;
     std::vector<std::vector<int>> bestG;
     std::vector<std::pair<int, int>> solve(Grid &grid);
